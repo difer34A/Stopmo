@@ -1,6 +1,17 @@
+"use client"
 import Image from 'next/image'
+import { Fetcher } from '@/lib/fetcher'
+import { useState } from 'react'
 
 export default function Home() {
+    const [result, setResult] = useState([])
+
+    const url: any = "https://api.themoviedb.org/3/discover/movie?include_adult=true&language=en-US&page=1&sort_by=popularity.desc&api_key=eac4c291261c9bb94e659091a189cb38"
+    Fetcher(url)
+        .then((res) => {
+            setResult(res.result)
+        })
+
     return (
         <>
             <div className='w-full h-screen bg-black'>
